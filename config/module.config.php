@@ -1,7 +1,7 @@
 <?php
 return array(
-    'service_manager' => array (
-        'factories' => array (
+    'service_manager' => array(
+        'factories'  => array(
             'AssetManager\Service\AssetManager'                 => 'AssetManager\Service\AssetManagerServiceFactory',
             'AssetManager\Service\AssetFilterManager'           => 'AssetManager\Service\AssetFilterManagerServiceFactory',
             'AssetManager\Service\AssetCacheManager'            => 'AssetManager\Service\AssetCacheManagerServiceFactory',
@@ -14,22 +14,22 @@ return array(
             'AssetManager\Resolver\AliasPathStackResolver'      => 'AssetManager\Service\AliasPathStackResolverServiceFactory',
         ),
         'invokables' => array(
-            'AssetManager\Service\MimeResolver'                 => 'AssetManager\Service\MimeResolver',
+            'AssetManager\Service\MimeResolver' => 'AssetManager\Service\MimeResolver',
         ),
-        'aliases' => array(
+        'aliases'    => array(
             //Alias left here for BC
-            'mime_resolver'                                     => 'AssetManager\Service\MimeResolver',
+            'mime_resolver' => 'AssetManager\Service\MimeResolver',
         ),
     ),
-    'asset_manager' => array(
+    'asset_manager'   => array(
         'clear_output_buffer' => true,
-        'resolvers' => array(
-            'AssetManager\Resolver\MapResolver'                 => 3000,
-            'AssetManager\Resolver\ConcatResolver'              => 2500,
-            'AssetManager\Resolver\CollectionResolver'          => 2000,
-            'AssetManager\Resolver\PrioritizedPathsResolver'    => 1500,
-            'AssetManager\Resolver\AliasPathStackResolver'      => 1000,
-            'AssetManager\Resolver\PathStackResolver'           => 500,
+        'resolvers'           => array(
+            'AssetManager\Resolver\MapResolver'              => 3000,
+            'AssetManager\Resolver\ConcatResolver'           => 2500,
+            'AssetManager\Resolver\CollectionResolver'       => 2000,
+            'AssetManager\Resolver\PrioritizedPathsResolver' => 1500,
+            'AssetManager\Resolver\AliasPathStackResolver'   => 1000,
+            'AssetManager\Resolver\PathStackResolver'        => 500,
         ),
     ),
     'controllers'     => array(
@@ -37,7 +37,7 @@ return array(
             'AssetManager\Controller\Console' => 'AssetManager\Controller\ConsoleControllerFactory',
         ),
     ),
-    'view_helpers' => array(
+    'view_helpers'    => array(
         'factories' => array(
             'asset' => 'AssetManager\Service\AssetViewHelperFactory',
         ),

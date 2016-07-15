@@ -2,7 +2,9 @@
 
 namespace AssetManager\Service;
 
-use Zend\ServiceManager\FactoryInterface;
+use Interop\Container\ContainerInterface;
+use Tracy\Debugger;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use AssetManager\Resolver\AggregateResolver;
 use AssetManager\Exception;
@@ -36,7 +38,9 @@ class AggregateResolverServiceFactory implements FactoryInterface
 
         foreach ($config['resolvers'] as $resolverService => $priority) {
 
+            Debugger::barDump($resolverService);
             $resolverService = $serviceLocator->get($resolverService);
+            Debugger::barDump($resolverService);
 
             if (!$resolverService instanceof ResolverInterface) {
                 throw new Exception\RuntimeException(
@@ -63,4 +67,11 @@ class AggregateResolverServiceFactory implements FactoryInterface
 
         return $resolver;
     }
+
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    {
+        return $this->createService($container);
+    }
+
+
 }

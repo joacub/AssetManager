@@ -2,7 +2,8 @@
 
 namespace AssetManager\Service;
 
-use Zend\ServiceManager\FactoryInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
@@ -28,5 +29,10 @@ class AssetCacheManagerServiceFactory implements FactoryInterface
         }
 
         return new AssetCacheManager($serviceLocator, $config);
+    }
+
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    {
+        return $this->createService($container);
     }
 }

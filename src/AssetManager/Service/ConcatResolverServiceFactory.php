@@ -2,7 +2,8 @@
 
 namespace AssetManager\Service;
 
-use Zend\ServiceManager\FactoryInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use AssetManager\Resolver\ConcatResolver;
 
@@ -25,5 +26,10 @@ class ConcatResolverServiceFactory implements FactoryInterface
         $concatResolver = new ConcatResolver($files);
 
         return $concatResolver;
+    }
+
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    {
+        return $this->createService($container);
     }
 }

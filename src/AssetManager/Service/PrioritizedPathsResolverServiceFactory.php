@@ -2,7 +2,8 @@
 
 namespace AssetManager\Service;
 
-use Zend\ServiceManager\FactoryInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use AssetManager\Resolver\PrioritizedPathsResolver;
 
@@ -23,5 +24,10 @@ class PrioritizedPathsResolverServiceFactory implements FactoryInterface
         $prioritizedPathsResolver->addPaths($paths);
 
         return $prioritizedPathsResolver;
+    }
+
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    {
+        return $this->createService($container);
     }
 }

@@ -53,9 +53,11 @@ class Module implements
     {
         /* @var $response \Zend\Http\Response */
         $response = $event->getResponse();
+
         if (!method_exists($response, 'getStatusCode') || $response->getStatusCode() !== 404) {
             return;
         }
+
         $request        = $event->getRequest();
         $serviceManager = $event->getApplication()->getServiceManager();
         $assetManager   = $serviceManager->get(__NAMESPACE__ . '\Service\AssetManager');
