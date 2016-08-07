@@ -38,9 +38,7 @@ class AggregateResolverServiceFactory implements FactoryInterface
 
         foreach ($config['resolvers'] as $resolverService => $priority) {
 
-            Debugger::barDump($resolverService);
             $resolverService = $serviceLocator->get($resolverService);
-            Debugger::barDump($resolverService);
 
             if (!$resolverService instanceof ResolverInterface) {
                 throw new Exception\RuntimeException(
